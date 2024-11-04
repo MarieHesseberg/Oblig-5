@@ -10,32 +10,61 @@
     <form action="{{ url_for('behandle') }}" method="post">
         <!-- Informasjon om foresatt -->
         <h3>Informasjon om foresatt</h3>
-        <label for="navn_foresatt">Navn:</label>
-        <input type="text" id="navn_foresatt" name="navn_foresatt" required><br>
+        
+        <!-- Forelder 1 -->
+        <label for="navn_forelder_1">Navn - Forelder 1:</label>
+        <input type="text" id="navn_forelder_1" name="navn_forelder_1" required><br>
 
-        <label for="adresse_foresatt">Adresse:</label>
-        <input type="text" id="adresse_foresatt" name="adresse_foresatt" required><br>
+        <label for="adresse_forelder_1">Adresse - Forelder 1:</label>
+        <input type="text" id="adresse_forelder_1" name="adresse_forelder_1" required><br>
 
-        <label for="telefon_foresatt">Telefon:</label>
-        <input type="text" id="telefon_foresatt" name="telefon_foresatt" required><br>
+        <label for="telefon_forelder_1">Telefonnummer - Forelder 1:</label>
+        <input type="text" id="telefon_forelder_1" name="telefon_forelder_1" required><br>
+
+        <label for="personnummer_forelder_1">Personnummer - Forelder 1:</label>
+        <input type="text" id="personnummer_forelder_1" name="personnummer_forelder_1" required><br>
+
+        <!-- Forelder 2 -->
+        <label for="navn_forelder_2">Navn - Forelder 2:</label>
+        <input type="text" id="navn_forelder_2" name="navn_forelder_2"><br>
+
+        <label for="adresse_forelder_2">Adresse - Forelder 2:</label>
+        <input type="text" id="adresse_forelder_2" name="adresse_forelder_2"><br>
+
+        <label for="telefon_forelder_2">Telefonnummer - Forelder 2:</label>
+        <input type="text" id="telefon_forelder_2" name="telefon_forelder_2"><br>
+
+        <label for="personnummer_forelder_2">Personnummer - Forelder 2:</label>
+        <input type="text" id="personnummer_forelder_2" name="personnummer_forelder_2"><br>
 
         <!-- Informasjon om barnet -->
         <h3>Informasjon om barnet</h3>
-        <label for="navn_barn">Barnets navn:</label>
-        <input type="text" id="navn_barn" name="navn_barn" required><br>
+        <label for="personnummer_barn_1">Personnummer - Barn 1:</label>
+        <input type="text" id="personnummer_barn_1" name="personnummer_barn_1" required><br>
 
-        <label for="personnummer_barn">Barnets personnummer:</label>
-        <input type="text" id="personnummer_barn" name="personnummer_barn" required><br>
+        <label for="personnummer_barn_2">Personnummer - Barn 2:</label>
+        <input type="text" id="personnummer_barn_2" name="personnummer_barn_2"><br>
 
         <!-- Fortrinnsrett -->
         <h3>Fortrinnsrett</h3>
-        <label for="fortrinnsrett">Har barnet fortrinnsrett?</label>
-        <input type="checkbox" id="fortrinnsrett" name="fortrinnsrett" value="True"><br>
+        <div style="border: 1px solid #000; padding: 10px; margin-bottom: 10px;">
+            <label for="fortrinnsrett_barnevern">Fortrinnsrett - Barnevern:</label>
+            <input type="checkbox" id="fortrinnsrett_barnevern" name="fortrinnsrett_barnevern"><br>
 
-        <!-- Velg ønsket barnehage -->
-        <h3>Velg ønsket barnehage</h3>
-        <label for="barnehage">Barnehage:</label>
-        <select id="barnehage" name="barnehage">
+            <label for="fortrinnsrett_sykdom_familie">Fortrinnsrett - Sykdom i Familien:</label>
+            <input type="checkbox" id="fortrinnsrett_sykdom_familie" name="fortrinnsrett_sykdom_familie"><br>
+
+            <label for="fortrinnsrett_sykdom_barn">Fortrinnsrett - Sykdom på Barnet:</label>
+            <input type="checkbox" id="fortrinnsrett_sykdom_barn" name="fortrinnsrett_sykdom_barn"><br>
+
+            <label for="fortrinnsrett_annet">Fortrinnsrett - Annet:</label>
+            <input type="text" id="fortrinnsrett_annet" name="fortrinnsrett_annet"><br>
+        </div>
+
+        <!-- Velg ønsket barnehage (multiple priority) -->
+        <h3>Liste over Barnehager (Prioritert)</h3>
+        <label for="barnehage_prioritet_1">Prioritet 1:</label>
+        <select id="barnehage_prioritet_1" name="barnehage_prioritet_1" required>
             <option value="Sunshine Preschool">Sunshine Preschool</option>
             <option value="Happy Days Nursery">Happy Days Nursery</option>
             <option value="123 Learning Center">123 Learning Center</option>
@@ -44,6 +73,38 @@
             <option value="Giggles and Grins Childcare">Giggles and Grins Childcare</option>
             <option value="Playful Pals Daycare">Playful Pals Daycare</option>
         </select><br>
+
+        <label for="barnehage_prioritet_2">Prioritet 2:</label>
+        <select id="barnehage_prioritet_2" name="barnehage_prioritet_2">
+            <option value="Sunshine Preschool">Sunshine Preschool</option>
+            <option value="Happy Days Nursery">Happy Days Nursery</option>
+            <option value="123 Learning Center">123 Learning Center</option>
+            <option value="ABC Kindergarten">ABC Kindergarten</option>
+            <option value="Tiny Tots Academy">Tiny Tots Academy</option>
+            <option value="Giggles and Grins Childcare">Giggles and Grins Childcare</option>
+            <option value="Playful Pals Daycare">Playful Pals Daycare</option>
+        </select><br>
+
+        <label for="barnehage_prioritet_3">Prioritet 3:</label>
+        <select id="barnehage_prioritet_3" name="barnehage_prioritet_3">
+            <option value="Sunshine Preschool">Sunshine Preschool</option>
+            <option value="Happy Days Nursery">Happy Days Nursery</option>
+            <option value="123 Learning Center">123 Learning Center</option>
+            <option value="ABC Kindergarten">ABC Kindergarten</option>
+            <option value="Tiny Tots Academy">Tiny Tots Academy</option>
+            <option value="Giggles and Grins Childcare">Giggles and Grins Childcare</option>
+            <option value="Playful Pals Daycare">Playful Pals Daycare</option>
+        </select><br>
+
+        <!-- Tidspunkt for oppstart, søsken i barnehagen, and inntekt -->
+        <label for="tidspunkt_oppstart">Tidspunkt for Oppstart:</label>
+        <input type="date" id="tidspunkt_oppstart" name="tidspunkt_oppstart"><br>
+
+        <label for="sosken_i_barnehagen">Har Søsken som Går i Barnehagen:</label>
+        <input type="checkbox" id="sosken_i_barnehagen" name="sosken_i_barnehagen"><br>
+
+        <label for="brutto_inntekt">Brutto Inntekt Husholdning:</label>
+        <input type="text" id="brutto_inntekt" name="brutto_inntekt" required><br>
 
         <!-- Send inn søknaden -->
         <button type="submit">Send inn søknad</button>
