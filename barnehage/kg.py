@@ -60,7 +60,6 @@ def behandle():
             prioritet_1 = sd.get("barnehage_prioritet_1")
             prioritet_2 = sd.get("barnehage_prioritet_2")
             prioritet_3 = sd.get("barnehage_prioritet_3")
-            print("Priorities received:", prioritet_1, prioritet_2, prioritet_3)
             prioriteter = [prioritet_1, prioritet_2, prioritet_3]
 
             # Check if the applicant has any priority rights
@@ -68,16 +67,14 @@ def behandle():
                                      sd.get("fortrinnsrett_sykdom_familie") or
                                      sd.get("fortrinnsrett_sykdom_barn") or
                                      sd.get("fortrinnsrett_annet"))
-            print("Priority rights:", har_fortrinnsrett)
 
             # Check availability in prioritized kindergartens
             resultat, valgt_barnehage = sjekk_prioritert_barnehage(prioriteter, har_fortrinnsrett)
-            print("Result:", resultat, "Chosen kindergarten:", valgt_barnehage)
 
-            # Store the result and selected kindergarten in the session
+            # Store the result, selected kindergarten, and applied kindergartens in the session
             session['resultat'] = resultat
             session['valgt_barnehage'] = valgt_barnehage
-            print("Session valgt_barnehage:", session['valgt_barnehage'])  # Debug statement
+            session['prioriteter'] = prioriteter
 
             # Save the application data
             insert_soknad(form_to_object_soknad(sd))
@@ -91,17 +88,25 @@ def behandle():
         return render_template('soknad.html')
 
 
+
 @app.route('/svar')
 def svar():
     information = session['information']
     resultat = session.get('resultat', 'Ingen respons tilgjengelig')
+    prioriteter = session.get('prioriteter', [])
+    valgt_barnehage = session.get('valgt_barnehage')
+
     data = {
         "resultat": resultat,
-        "søknadsdata": information
+        "søknadsdata": information,
+        "prioriteter": prioriteter,
+        "valgt_barnehage": valgt_barnehage
     }
     return render_template('svar.html', data=data)
+
 
 @app.route('/commit')
 def commit():
     commit_all()
     return render_template('commit.html')
+
