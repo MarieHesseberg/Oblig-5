@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>Resultat: {{ data.get("resultat", "Tilbud") }}</h2>
+<h2>Resultat: {{ data.get("resultat") }}</h2>
 
-<table border="1">
-    {% for k, v in data.items() %}
-        <tr>
-            <th>{{ k }}</th>
-            <td>{{ v }}</td>
-        </tr>
-    {% endfor %}
-</table>
+{% if data.get("resultat") == "TILBUD" and data.get("valgt_barnehage") %}
+    <p>Gratulerer! Du har fått tilbud om plass i barnehagen: {{ data.get("valgt_barnehage") }}.</p>
+{% elif data.get("resultat") == "TILBUD" %}
+    <p>Gratulerer! Du har fått tilbud om plass i en av dine prioriterte barnehager.</p>
+{% else %}
+    <p>Vi beklager, men det var ikke ledig plass i noen av de prioriterte barnehagene.</p>
+{% endif %}
 
 {% endblock %}
 
