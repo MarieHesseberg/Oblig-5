@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
-<!-- Skriv inn din kode her for å returnere svar for bruksscenario om svar på en søknad. --> 
 {% block content %}
-<table border=1>
-	{% for k,v in data.items() %}
-	<tr>
-		<th>{{ k }}</th>
-		<td>{{ v }}</td>
-	</tr>
-	{% endfor %}
-</table>
+
+<h2>Resultat: {{ data.get("resultat") }}</h2>
+
+<h3>Barnehager du søkte på:</h3>
+<ul>
+    {% for kindergarten in data.get("prioriteter") %}
+        <li>{{ kindergarten }}</li>
+    {% endfor %}
+</ul>
+
+{% if data.get("resultat") == "TILBUD" and data.get("valgt_barnehage") %}
+    <p>Gratulerer! Du har fått tilbud om plass i barnehagen: {{ data.get("valgt_barnehage") }}.</p>
+{% elif data.get("resultat") == "TILBUD" %}
+    <p>Gratulerer! Du har fått tilbud om plass i en av dine prioriterte barnehager.</p>
+{% else %}
+    <p>Vi beklager, men det var ikke ledig plass i noen av de prioriterte barnehagene.</p>
+{% endif %}
+
 {% endblock %}
